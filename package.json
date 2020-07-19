@@ -1,0 +1,22 @@
+{
+  "name": "gatsby-source-firegroup",
+  "version": "0.0.1",
+  "description": "Gatsby plugin to use firestore collection groups as a Gatsby data source.",
+  "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "firebase"
+  ],
+  "author": "Bemaja Developers <developers@bemaja.com>",
+  "files": [
+    "gatsby-node.js",
+    "README.md"
+  ],
+  "repository": "Bemaja/gatsby-source-firebase",
+  "main": "gatsby-node.js",
+  "dependencies": {
+    "firebase": "^7.16.1",
+    "gatsby-cli": "^2.12.62"
+  }
+}
