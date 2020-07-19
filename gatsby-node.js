@@ -1,6 +1,5 @@
 const report = require("gatsby-cli/lib/reporter");
 const firebase = require("firebase");
-const crypto = require("crypto");
 
 const applyConditions = (collection, conditions = []) => {
   if (!conditions.length) {
@@ -26,14 +25,9 @@ exports.sourceNodes = async (
     return;
   }
 
-  const { createNode } = boundActionCreators;
+  const { createNode } = actions;
 
   const db = firebase.firestore();
-  db.settings({
-    timestampsInSnapshots: true
-  });
-
-  const start = Date.now();
 
   const promises = types.map(
     async ({
