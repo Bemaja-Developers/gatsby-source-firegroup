@@ -1,5 +1,5 @@
 const report = require("gatsby-cli/lib/reporter");
-const firebaseWeb = require("firebase");
+const firebase = require("firebase");
 const crypto = require("crypto");
 
 const applyConditions = (collection, conditions = []) => {
