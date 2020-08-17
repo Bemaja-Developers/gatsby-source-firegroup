@@ -52,20 +52,27 @@ exports.sourceNodes = async (
         collectionOrGroup,
         conditions
       );
-      const snapshot = await conditionedCollection.get();
-      for (let doc of snapshot.docs) {
-        const nodeData = map(doc.data());
-        const nodeMeta = {
-          id: doc.id,
-          parent: null,
-          children: [],
-          internal: {
-            type,
-            contentDigest: createContentDigest(nodeData)
-          }
-        };
-        createNode(Object.assign({}, nodeData, nodeMeta));
-        Promise.resolve();
+
+      try {
+        const snapshot = await conditionedCollection.get();
+
+        for (let doc of snapshot.docs) {
+          const nodeData = map(doc.data());
+          const nodeMeta = {
+            id: doc.ref.path,
+            parent: null,
+            children: [],
+            internal: {
+              type,
+              contentDigest: createContentDigest(nodeData)
+            }
+          };
+          createNode(Object.assign({}, nodeData, nodeMeta));
+          Promise.resolve();
+        }
+      } catch (error) {
+        report.warn(`Failed fetching snapshots from firestore: ${error}`);
+        return;
       }
     }
   );
